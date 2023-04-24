@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_listar">
+
+    <fragment
+        android:id="@+id/nav_listar"
+        android:name="com.example.examenallanchica.ui.listar.ListarFragment"
+        android:label="@string/menu_listar"
+        tools:layout="@layout/fragment_listar" >
+        <action
+            android:id="@+id/action_nav_listar_to_frag_nota"
+            app:destination="@id/frag_nota" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/frag_nota"
+        android:name="com.example.examenallanchica.ui.listar.NotaFragment"
+        android:label="@string/frag_nota"
+        tools:layout="@layout/fragment_nota" >
+        <action
+            android:id="@+id/action_frag_nota_to_nav_listar"
+            app:destination="@id/nav_listar" />
+    </fragment>
+</navigation>
