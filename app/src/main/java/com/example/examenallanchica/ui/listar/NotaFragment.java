@@ -1,7 +1,9 @@
 package com.example.examenallanchica.ui.listar;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -39,13 +41,26 @@ public class NotaFragment extends Fragment {
         viewModel.getNota().observe(getViewLifecycleOwner(), nota -> binding.tvNotaDesc.setText(nota));
 
         binding.btEliminar.setOnClickListener(v -> {
-            viewModel.eliminarNota();
+            avisoEliminacion(getContext());
 
 //            Volver al listado
-            Navigation.findNavController(v).navigate(R.id.nav_listar);
+            viewModel.getEliminado().observe(getViewLifecycleOwner(), eliminado -> {
+                if (eliminado) {
+                    Navigation.findNavController(v).navigate(R.id.nav_listar);
+                }
+            });
         });
 
         return root;
+    }
+
+    public void avisoEliminacion(Context context) {
+        new AlertDialog.Builder(context)
+                .setTitle("Eliminación")
+                .setMessage("¿Desea eliminar la nota?")
+                .setPositiveButton("Si", (dialog, which) -> viewModel.eliminarNota() )
+                .setNegativeButton("No", (dialog, which) -> dialog.dismiss())
+                .show();
     }
 
 }
