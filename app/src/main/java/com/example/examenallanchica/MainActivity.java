@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void cargarListaDeNotas() {
+        listaNotas = new ArrayList<>();
         listaNotas.add("Lavar la ropa");
         listaNotas.add("Sacar a pasear al perro");
         listaNotas.add("Aca voy a probar una nota muy larga para ver como se ve en la lista de notas");
